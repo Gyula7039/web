@@ -7,6 +7,7 @@
     flex-direction: column;
     align-items: center; /* Középre helyezi a labelt */
     margin-bottom: 15px;
+    color: deepskyblue;
 }
 
 label {
@@ -15,6 +16,7 @@ label {
 
 h1{
     text-align: center;
+    color: deepskyblue;
 }
 
 .regist{
