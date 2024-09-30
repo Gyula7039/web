@@ -2,9 +2,9 @@
 session_start();
 
 $servername = "localhost"; // Változtasd meg, ha szükséges
-$username = "your_username"; // Adatbázis felhasználónév
-$password = "your_password"; // Adatbázis jelszó
-$dbname = "my_database";
+$username = "root"; // Adatbázis felhasználónév
+$password = ""; // Adatbázis jelszó
+$dbname = "web";
 
 // Kapcsolódás az adatbázishoz
 $conn = new mysqli($servername, $username, $password, $dbname);
