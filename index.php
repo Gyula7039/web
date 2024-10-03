@@ -22,14 +22,14 @@
     <div class="container">
         <div id="login-container" class="form-container">
             <h1>Bejelentkezés</h1>
-            <form action="login.php" method="post" id="loginForm" onsubmit="return handleLogin(event)">
+            <form form action="login.php" method="post" id="loginForm">
                 <div class="form-group">
-                    <label for="loginUsername">Felhasználónév:</label>
-                    <input type="text" id="loginUsername" required>
+                    <label for="loginUsername">Felhasználónév vagy E-mail:</label>
+                    <input type="text" id="loginUsername" name="felhasznalonev" required>
                 </div>
                 <div class="form-group">
                     <label for="loginPassword">Jelszó:</label>
-                    <input type="password" id="loginPassword" required>
+                    <input type="password" id="loginPassword" name="jelszo" required>
                 </div>
                 <div class="form-group">
                 <button type="submit">Bejelentkezés</button>
@@ -41,18 +41,18 @@
 
         <div id="register-container" class="form-container" style="display: none;">
             <h1>Regisztráció</h1>
-            <form id="registerForm" action="register.php" method="post" onsubmit="return handleRegister(event)">
+            <form id="registerForm" action="register.php" method="post">
                 <div class="form-group">
                     <label for="registerEmail">E-mail:</label>
-                    <input type="email" id="registerEmail" required>
+                    <input type="email" id="registerEmail" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="registerUsername">Felhasználónév:</label>
-                    <input type="text" id="registerUsername" required>
+                    <input type="text" id="registerUsername" name="felhasznalonev" required>
                 </div>
                 <div class="form-group">
                     <label for="registerPassword">Jelszó:</label>
-                    <input type="password" id="registerPassword" required>
+                    <input type="password" id="registerPassword" name="jelszo" required>
                 </div>
                 <div class="form-group">
                 <button type="submit">Regisztráció</button>
