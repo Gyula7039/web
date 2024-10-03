@@ -1,6 +1,11 @@
 <?php
-session_start();
+session_start(); // Session indítása
+
+// Session törlése
 session_unset();
 session_destroy();
-header("Location: index.php");
+
+// Visszairányítás a bejelentkezési oldalra
+header("Location: login.php");
+exit();
 ?>

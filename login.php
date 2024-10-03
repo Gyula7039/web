@@ -5,9 +5,9 @@ error_reporting(E_ALL);
 
 session_start();
 
-$servername = "localhost"; // Változtasd meg, ha szükséges
-$username = "root"; // Adatbázis felhasználónév
-$password = ""; // Adatbázis jelszó
+$servername = "localhost";
+$username = "root";
+$password = "";
 $dbname = "web";
 
 // Kapcsolódás az adatbázishoz
@@ -19,31 +19,36 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    // Ellenőrizzük, hogy a mezők léteznek és nem üresek
+    if (!empty($_POST['username']) && !empty($_POST['password'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-    // Adatok lekérdezése
-    $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $stmt->store_result();
+        // Adatok lekérdezése az adatbázisból
+        $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $stmt->store_result();
 
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($hashed_password);
-        $stmt->fetch();
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($hashed_password);
+            $stmt->fetch();
 
-        // Jelszó ellenőrzése
-        if (password_verify($password, $hashed_password)) {
-            $_SESSION['username'] = $username; // Sikeres bejelentkezés
-            echo "Sikeres bejelentkezés!";
+            // Jelszó ellenőrzése
+            if (password_verify($password, $hashed_password)) {
+                $_SESSION['username'] = $username; // Sikeres bejelentkezés
+                echo "Sikeres bejelentkezés!";
+            } else {
+                echo "Hibás jelszó.";
+            }
         } else {
-            echo "Hibás jelszó.";
+            echo "Nincs ilyen felhasználónév.";
         }
-    } else {
-        echo "Nincs ilyen felhasználónév.";
-    }
 
-    $stmt->close();
+        $stmt->close();
+    } else {
+        echo "Kérjük, töltse ki az összes mezőt!";
+    }
 }
 
 $conn->close();
