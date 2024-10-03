@@ -6,6 +6,6 @@ session_unset();
 session_destroy();
 
 // Visszairányítás a bejelentkezési oldalra
-header("Location: login.php");
+header("Location: index.php");
 exit();
 ?>

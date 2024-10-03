@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (password_verify($password, $hashed_password)) {
                 $_SESSION['username'] = $username; // Sikeres bejelentkezés
                 echo "Sikeres bejelentkezés!";
+                header("Location: index.php");
             } else {
                 echo "Hibás jelszó.";
             }
