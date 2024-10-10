@@ -1,56 +1,32 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
+require_once 'db_connect.php'; // Adatbázis kapcsolat
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "web";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-// Kapcsolódás az adatbázishoz
-$conn = new mysqli($servername, $username, $password, $dbname);
+    // Lekérdezzük a felhasználót az adatbázisból
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
 
-// Kapcsolat ellenőrzése
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    if ($user && password_verify($password, $user['password'])) {
+        // Felhasználó session beállítása
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['role'] = $user['role'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Ellenőrizzük, hogy a mezők léteznek és nem üresek
-    if (!empty($_POST['username']) && !empty($_POST['password'])) {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        // Adatok lekérdezése az adatbázisból
-        $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $stmt->store_result();
-
-        if ($stmt->num_rows > 0) {
-            $stmt->bind_result($hashed_password);
-            $stmt->fetch();
-
-            // Jelszó ellenőrzése
-            if (password_verify($password, $hashed_password)) {
-                $_SESSION['username'] = $username; // Sikeres bejelentkezés
-                echo "Sikeres bejelentkezés!";
-                header("Location: index.php");
-            } else {
-                echo "Hibás jelszó.";
-            }
+        // Admin esetén irányítás az admin felületre
+        if ($user['role'] === 'admin') {
+            header("Location: admin.php");
         } else {
-            echo "Nincs ilyen felhasználónév.";
+            header("Location: index.php");
         }
-
-        $stmt->close();
+        exit();
     } else {
-        echo "Kérjük, töltse ki az összes mezőt!";
+        echo "Hibás felhasználónév vagy jelszó.";
     }
 }
-
-$conn->close();
 ?>
