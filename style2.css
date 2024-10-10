@@ -1,5 +1,5 @@
-body {
-    background-color: black;
-    color: white;
-    transition: background-color 0.5s, color 0.5s; /* Simább váltás */
+body.dark-mode{
+    background-image: url('wallpaper.png');
+    background-size: cover;
+    background-position: center;
 }

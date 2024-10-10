@@ -1,46 +1,32 @@
 <?php
 session_start();
+require_once 'db_connect.php'; // Adatbázis kapcsolat
 
-$servername = "localhost"; // Változtasd meg, ha szükséges
-$username = "your_username"; // Adatbázis felhasználónév
-$password = "your_password"; // Adatbázis jelszó
-$dbname = "my_database";
-
-// Kapcsolódás az adatbázishoz
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Kapcsolat ellenőrzése
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Adatok lekérdezése
-    $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
+    // Lekérdezzük a felhasználót az adatbázisból
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->bind_param('s', $username);
     $stmt->execute();
-    $stmt->store_result();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
 
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($hashed_password);
-        $stmt->fetch();
+    if ($user && password_verify($password, $user['password'])) {
+        // Felhasználó session beállítása
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['role'] = $user['role'];
 
-        // Jelszó ellenőrzése
-        if (password_verify($password, $hashed_password)) {
-            $_SESSION['username'] = $username; // Sikeres bejelentkezés
-            echo "Sikeres bejelentkezés!";
+        // Admin esetén irányítás az admin felületre
+        if ($user['role'] === 'admin') {
+            header("Location: admin.php");
         } else {
-            echo "Hibás jelszó.";
+            header("Location: index.php");
         }
+        exit();
     } else {
-        echo "Nincs ilyen felhasználónév.";
+        echo "Hibás felhasználónév vagy jelszó.";
     }
-
-    $stmt->close();
 }
-
-$conn->close();
 ?>
