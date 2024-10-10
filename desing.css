@@ -1,0 +1,28 @@
+.container{
+    color: deepskyblue;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Középre helyezi a labelt */
+    margin-bottom: 15px;
+    color: deepskyblue;
+}
+
+label {
+    margin-bottom: 5px; /* Térköz a label és a bemeneti mező között */
+}
+
+h1{
+    text-align: center;
+    color: deepskyblue;
+}
+
+.regist{
+    text-align: center;
+}
+
+button{
+    align-items: center;
+}
