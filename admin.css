@@ -6,9 +6,21 @@ body{
 table{
     border: 1px solid white;
     border-collapse: collapse;
+    color: white;
 }
 
-tr td{
+tr th td{
     border: 1px solid white;
     border-collapse: collapse;
+    color: white;
+}
+
+.sor1{
+    border: 1px solid white;
+    border-collapse: collapse;
+    color: white;
+}
+
+h2{
+    color: white;
 }

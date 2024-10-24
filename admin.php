@@ -29,14 +29,16 @@ if (isset($_POST['delete_user'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="admin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>Admin felület</title>
 </head>
 <body>
-    <h1>Adminisztrációs felület</h1>
-    <h2>Felhasználók kezelése</h2>
+    <h1 class="text-light">Adminisztrációs felület</h1>
+    <h2 class="text-light">Felhasználók kezelése</h2>
 
     <table>
-        <tr>
+        <tr class="text-light">
             <th>ID</th>
             <th>Felhasználónév</th>
             <th>Email</th>
@@ -44,7 +46,7 @@ if (isset($_POST['delete_user'])) {
             <th>Műveletek</th>
         </tr>
         <?php while ($row = $result->fetch_assoc()): ?>
-            <tr>
+            <tr class="text-light">
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo htmlspecialchars($row['username']); ?></td>
                 <td><?php echo htmlspecialchars($row['email']); ?></td>
@@ -61,14 +63,14 @@ if (isset($_POST['delete_user'])) {
         <?php endwhile; ?>
     </table>
 
-    <h2>Új felhasználó hozzáadása</h2>
-    <form action="add_user.php" method="post">
+    <h2 class="text-light">Új felhasználó hozzáadása</h2>
+    <form action="add_user.php" method="post" >
         <input type="text" name="username" placeholder="Felhasználónév" required>
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Jelszó" required>
         <select name="role">
-            <option value="user">Felhasználó</option>
-            <option value="admin">Admin</option>
+            <option value="user" class="text-light">Felhasználó</option>
+            <option value="admin" class="text-light">Admin</option>
         </select>
         <button type="submit">Hozzáadás</button>
     </form>

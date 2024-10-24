@@ -21,8 +21,8 @@ if ($is_logged_in) {
     $_SESSION['theme'] = $theme;
 }
 
-// Kiválasztjuk a megfelelő CSS fájlt
-$stylesheet = ($theme === 'dark') ? 'style2.css' : 'style1.css';
+// Bootstrap osztály beállítása
+$theme_class = ($theme === 'dark') ? 'bg-dark text-light' : 'bg-light text-dark';
 ?>
 
 <!DOCTYPE html>
@@ -31,28 +31,28 @@ $stylesheet = ($theme === 'dark') ? 'style2.css' : 'style1.css';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weblap</title>
-    <link rel="stylesheet" href="<?php echo $stylesheet; ?>" id="theme-style">
-    <link rel="stylesheet" href="desing.css"><!-- Design CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
-<body class="<?php echo $theme; ?>-mode">
-    <h1>Válaszon témát</h1>
-    <div class="form-group">
-        <form action="set_theme.php" method="post">
-            <label>
-                <input type="radio" name="theme" value="light" <?php echo ($theme === 'light') ? 'checked' : ''; ?> onclick="this.form.submit()"> Világos mód
-            </label>
-            <label>
-                <input type="radio" name="theme" value="dark" <?php echo ($theme === 'dark') ? 'checked' : ''; ?> onclick="this.form.submit()"> Sötét mód
-            </label>
-        </form>
-    </div>
+<body class="<?php echo $theme_class; ?>">
 
     <div class="container">
+        <h1>Válassz témát</h1>
+        <form action="set_theme.php" method="post">
+            <div class="form-group">
+                <label>
+                    <input type="radio" name="theme" value="light" <?php echo ($theme === 'light') ? 'checked' : ''; ?> onclick="this.form.submit()"> Világos mód
+                </label>
+                <label>
+                    <input type="radio" name="theme" value="dark" <?php echo ($theme === 'dark') ? 'checked' : ''; ?> onclick="this.form.submit()"> Sötét mód
+                </label>
+            </div>
+        </form>
+
         <?php if ($is_logged_in): ?>
-            <h2>Üdvözöljük, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
-            <!-- Kijelentkezés gomb -->
+            <h2>Üdvözlünk, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
             <form action="logout.php" method="post">
-                <button type="submit">Kijelentkezés</button>
+                <button type="submit" class="btn btn-danger">Kijelentkezés</button>
             </form>
         <?php else: ?>
             <!-- Bejelentkezési és regisztrációs formok itt -->
