@@ -29,7 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("sss", $email, $username, $password);
 
         if ($stmt->execute()) {
-            echo "Sikeres regisztráció!";
+            // Sikeres regisztráció esetén üzenet és átirányítás
+            echo "Sikeres regisztráció! Átirányítás a bejelentkezéshez...";
+
+            // Átirányítás a bejelentkezéshez 3 másodperc múlva
+            header("refresh:3;url=index.php");
+            exit();
         } else {
             echo "Hiba történt: " . $stmt->error;
         }
