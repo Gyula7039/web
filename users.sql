@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Okt 10. 09:50
+-- Létrehozás ideje: 2024. Okt 24. 08:24
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.0.30
 
@@ -42,7 +42,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `Stilus`) VALUES
 (1, 'teszt', '$2y$10$/CTIpiruU/lZsvHBYx04U.YmRVuUVIvQs9bLhy.mv4tEXzZv6w1Fy', 'teszt1@gmail.com', 'user', 2),
-(2, 'admin', '$2y$10$/CTIpiruU/lZsvHBYx04U.YmRVuUVIvQs9bLhy.mv4tEXzZv6w1Fy', 'admin@admin.hu', 'admin', 1);
+(2, 'admin', '$2y$10$/CTIpiruU/lZsvHBYx04U.YmRVuUVIvQs9bLhy.mv4tEXzZv6w1Fy', 'admin@admin.hu', 'admin', 1),
+(3, 'Gergo', '$2y$10$bfFzMIiTMiux4ktzE2/9JOlnGV.to/KSxTde1EX420xj/Ullm/WK2', 'gergo@user.hu', 'user', 0);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -62,7 +63,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
