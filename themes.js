@@ -1,18 +1,14 @@
 function changeMode(mode) {
-    const lightMode = document.getElementById('light-mode');
-    const darkMode = document.getElementById('dark-mode');
+    const body = document.getElementById('body');
     if (mode === 'dark') {
-        lightMode.disabled = true;
-        darkMode.disabled = false;
-        document.body.classList.remove('light-mode');
-        document.body.classList.add('dark-mode');
+        body.classList.remove('bg-light', 'text-dark');
+        body.classList.add('bg-dark', 'text-light');
     } else {
-        lightMode.disabled = false;
-        darkMode.disabled = true;
-        document.body.classList.remove('dark-mode');
-        document.body.classList.add('light-mode');
+        body.classList.remove('bg-dark', 'text-light');
+        body.classList.add('bg-light', 'text-dark');
     }
 }
+
 function toggleForms() {
     const loginContainer = document.getElementById('login-container');
     const registerContainer = document.getElementById('register-container');

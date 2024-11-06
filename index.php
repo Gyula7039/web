@@ -14,11 +14,10 @@ $is_logged_in = isset($_SESSION['username']);
     <link rel="stylesheet" href="style1.css" id="light-mode"> <!-- Világos mód CSS -->
     <link rel="stylesheet" href="style2.css" id="dark-mode" disabled> <!-- Sötét mód CSS -->
     <link rel="stylesheet" href="desing.css"><!-- Desing CSS-->
-    <script src="themes.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
-<body class="light-mode">
+<body class="bg-light text-dark" id="body">
     <h1>Válaszon témát</h1>
     <div class="form-group">
         <label>
@@ -34,7 +33,7 @@ $is_logged_in = isset($_SESSION['username']);
             <h2>Üdvözöljük, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
             <!-- Kijelentkezés gomb -->
             <form action="logout.php" method="post">
-                <button type="submit">Kijelentkezés</button>
+                <button type="submit" class="btn btn-danger">Kijelentkezés</button>
             </form>
         <?php else: ?>
             <div id="login-container" class="form-container">
@@ -42,14 +41,14 @@ $is_logged_in = isset($_SESSION['username']);
                 <form action="login.php" method="post" id="loginForm">
                     <div class="form-group">
                         <label for="loginUsername">Felhasználónév vagy E-mail:</label>
-                        <input type="text" id="loginUsername" name="username" required>
+                        <input type="text" id="loginUsername" name="username" required class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="loginPassword">Jelszó:</label>
-                        <input type="password" id="loginPassword" name="password" required>
+                        <input type="password" id="loginPassword" name="password" required class="form-control">
                     </div>
                     <div class="form-group">
-                        <button type="submit">Bejelentkezés</button>
+                        <button type="submit" class="btn btn-primary">Bejelentkezés</button>
                     </div>
                     <p id="loginMessage" class="message"></p>
                 </form>
@@ -61,18 +60,18 @@ $is_logged_in = isset($_SESSION['username']);
                 <form id="registerForm" action="register.php" method="post">
                     <div class="form-group">
                         <label for="registerEmail">E-mail:</label>
-                        <input type="email" id="registerEmail" name="email" required>
+                        <input type="email" id="registerEmail" name="email" required class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="registerUsername">Felhasználónév:</label>
-                        <input type="text" id="registerUsername" name="username" required>
+                        <input type="text" id="registerUsername" name="username" required class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="registerPassword">Jelszó:</label>
-                        <input type="password" id="registerPassword" name="password" required>
+                        <input type="password" id="registerPassword" name="password" required class="form-control">
                     </div>
                     <div class="form-group">
-                        <button type="submit">Regisztráció</button>
+                        <button type="submit" class="btn btn-success">Regisztráció</button>
                     </div>
                     <p id="registerMessage" class="message"></p>
                 </form>
@@ -80,5 +79,30 @@ $is_logged_in = isset($_SESSION['username']);
             </div>
         <?php endif; ?>
     </div>
+
+    <script>
+        function changeMode(mode) {
+            const body = document.getElementById('body');
+            if (mode === 'dark') {
+                body.classList.remove('bg-light', 'text-dark');
+                body.classList.add('bg-dark', 'text-light');
+            } else {
+                body.classList.remove('bg-dark', 'text-light');
+                body.classList.add('bg-light', 'text-dark');
+            }
+        }
+
+        function toggleForms() {
+            const loginContainer = document.getElementById('login-container');
+            const registerContainer = document.getElementById('register-container');
+            if (loginContainer.style.display === "none") {
+                loginContainer.style.display = "block";
+                registerContainer.style.display = "none";
+            } else {
+                loginContainer.style.display = "none";
+                registerContainer.style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
