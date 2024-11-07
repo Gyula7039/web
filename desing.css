@@ -10,3 +10,10 @@ h1, .regist, .message {
 .webcim{
     text-align: center;
 }
+
+ol li{
+    text-align: center;
+    align-items: center;
+    list-style: none;
+    list-style-type: none;
+}
