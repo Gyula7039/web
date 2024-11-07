@@ -58,6 +58,19 @@ $theme_class = ($theme === 'dark') ? 'bg-dark text-light' : 'bg-light text-dark'
             <!-- Bejelentkezési és regisztrációs formok itt -->
         <?php endif; ?>
     </div>
-
+    <div>
+        <h1 class="webcim">Számítógép részei</h1>
+        <br>
+        <img src="img/computer.png" alt="computer">
+        <br>
+        monitor.
+        alaplap.
+        CPU (mikroprocesszor)
+        elsődleges tárhely (RAM)
+        videókártya, hangkártya.
+        tápegység.
+        optikai lemezmeghajtó
+        másodlagos tárhely (merevlemez)
+    </div>
 </body>
 </html>

@@ -16,7 +16,7 @@ if (isset($_SESSION['username']) && isset($_POST['theme'])) {
     $_SESSION['theme'] = $theme;
     
     // Vissza a főoldalra vagy bárhova
-    header("Location: index.php");
+    header("Location: index2.php");
     exit();
 }
 ?>

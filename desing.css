@@ -1,24 +1,12 @@
-
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Középre helyezi a labelt */
-    margin-bottom: 15px;
+.form-container {
+    max-width: 400px; /* Maximális szélesség az űrlaphoz */
+    width: 100%;
 }
 
-label {
-    margin-bottom: 5px; /* Térköz a label és a bemeneti mező között */
-}
-
-h1{
+h1, .regist, .message {
     text-align: center;
 }
 
-.regist{
+.webcim{
     text-align: center;
-}
-
-button{
-    align-items: center;
 }

@@ -19,67 +19,70 @@ $is_logged_in = isset($_SESSION['username']);
 </head>
 <body class="bg-light text-dark" id="body">
     <h1>Válaszon témát</h1>
-    <div class="form-group">
-        <label>
+    <div class="form-group d-flex justify-content-center text-center my-4">
+        <label class="mx-2">
             <input type="radio" name="mode" value="light" checked onclick="changeMode('light')"> Világos mód
         </label>
-        <label>
+        <label class="mx-2">
             <input type="radio" name="mode" value="dark" onclick="changeMode('dark')"> Sötét mód
         </label>
     </div>
 
-    <div class="container">
-        <?php if ($is_logged_in): ?>
-            <h2>Üdvözöljük, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
-            <!-- Kijelentkezés gomb -->
-            <form action="logout.php" method="post">
-                <button type="submit" class="btn btn-danger">Kijelentkezés</button>
-            </form>
-        <?php else: ?>
-            <div id="login-container" class="form-container">
-                <h1>Bejelentkezés</h1>
-                <form action="login.php" method="post" id="loginForm">
-                    <div class="form-group">
-                        <label for="loginUsername">Felhasználónév vagy E-mail:</label>
-                        <input type="text" id="loginUsername" name="username" required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="loginPassword">Jelszó:</label>
-                        <input type="password" id="loginPassword" name="password" required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Bejelentkezés</button>
-                    </div>
-                    <p id="loginMessage" class="message"></p>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="row w-100">
+        <div class="col-md-6 mx-auto">
+            <?php if ($is_logged_in): ?>
+                <h2 class="text-center">Üdvözöljük, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
+                <form action="logout.php" method="post" class="text-center">
+                    <button type="submit" class="btn btn-danger w-100">Kijelentkezés</button>
                 </form>
-                <p class="regist">Nem vagy még regisztrálva? <a href="#" onclick="toggleForms()">Regisztrálj itt</a></p>
+            <?php else: ?>
+                <div id="login-container" class="form-container text-center mx-auto">
+                    <h1>Bejelentkezés</h1>
+                    <form action="login.php" method="post" id="loginForm">
+                        <div class="form-group">
+                            <label for="loginUsername">Felhasználónév:</label>
+                            <input type="text" id="loginUsername" name="username" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Jelszó:</label>
+                            <input type="password" id="loginPassword" name="password" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary w-100">Bejelentkezés</button>
+                        </div>
+                    </form>
+                    <p class="regist">Nem vagy még regisztrálva? <a href="#" onclick="toggleForms()">Regisztrálj itt</a></p>
+                </div>
+                
+                <div id="register-container" class="form-container text-center mx-auto" style="display: none;">
+                    <h1>Regisztráció</h1>
+                    <form id="registerForm" action="register.php" method="post">
+                        <div class="form-group">
+                            <label for="registerEmail">E-mail:</label>
+                            <input type="email" id="registerEmail" name="email" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerUsername">Felhasználónév:</label>
+                            <input type="text" id="registerUsername" name="username" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Jelszó:</label>
+                            <input type="password" id="registerPassword" name="password" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success w-100">Regisztráció</button>
+                        </div>
+                    </form>
+                    <p class="regist">Jelentkezz be a meglévő fiókoddal: <a href="#" onclick="toggleForms()">Bejelentkezés itt</a></p>
+                </div>
+            <?php endif; ?>
             </div>
-
-            <div id="register-container" class="form-container" style="display: none;">
-                <h1>Regisztráció</h1>
-                <form id="registerForm" action="register.php" method="post">
-                    <div class="form-group">
-                        <label for="registerEmail">E-mail:</label>
-                        <input type="email" id="registerEmail" name="email" required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="registerUsername">Felhasználónév:</label>
-                        <input type="text" id="registerUsername" name="username" required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="registerPassword">Jelszó:</label>
-                        <input type="password" id="registerPassword" name="password" required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success">Regisztráció</button>
-                    </div>
-                    <p id="registerMessage" class="message"></p>
-                </form>
-                <p class="regist">Jelentkezz be a meglévő fiókoddal: <a href="#" onclick="toggleForms()">Bejelentkezés itt</a></p>
-            </div>
-        <?php endif; ?>
+        </div>
     </div>
 
+
+    
     <script>
         function changeMode(mode) {
             const body = document.getElementById('body');
