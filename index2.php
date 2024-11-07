@@ -73,6 +73,14 @@ $theme_class = ($theme === 'dark') ? 'bg-dark text-light' : 'bg-light text-dark'
     <li>7. optikai lemezmeghajtó</li>
     <li>8. másodlagos tárhely (merevlemez)</li>
   </ol>
+  <br>
+  <img src="img/IBM_PC_5150.jpg" alt="IBM" align="right">
+  <div style="text-align: left">
+  <p>A személyi számítógép (angolul: personal computer, PC) olyan számítógép,<br> amely nem egy központi számítógép terminálja (munkaállomása), hanem<br> önálló, egyetlen személy (az ún. végfelhasználó) által kezelt, kisebb méretű<br> gép saját billentyűzettel, processzorral, operatív memóriával és monitorral.<br> Létrehozásához a számítógép elektronikájának miniatürizálódása és<br> lényegesen kisebb előállítási költsége volt szükséges, ami a nyomtatott áramkörök és a mikroprocesszorok megjelenésével lett elérhető. Az<br> International Business Machines (IBM) 1981. augusztus 12-én mutatta az első<br> személyi számítógépét.</p>
+  </div>
+  <div style="text-align: right">
+    Forrás: <a href="https://hu.wikipedia.org/wiki/Szem%C3%A9lyi_sz%C3%A1m%C3%ADt%C3%B3g%C3%A9p" target="_blank">Wikipédia-Személyi számítógép</a>
+  </div>
 </div>
 </body>
 </html>
